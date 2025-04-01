@@ -1,0 +1,5 @@
+groq
+requests
+flask
+flask-cors
+pyttsx3
