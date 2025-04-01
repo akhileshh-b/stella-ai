@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Profile - Stella AI</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <!-- Header (Same as Chat Interface) -->
+  <header class="chat-header">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>Stella AI</h2>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-user"></i>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+            <li><a class="dropdown-item" href="/edit-profile">Edit Profile</a></li>
+            <li><a class="dropdown-item" href="/settings">Settings</a></li>
+            <li><a class="dropdown-item" href="/">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Edit Profile Section -->
+  <div class="edit-profile-container">
+    <div class="container">
+      <h2 class="text-center mb-4">Edit Profile</h2>
+      
+      <!-- Profile Picture Upload -->
+      <div class="profile-picture-upload text-center mb-4">
+        <div class="avatar-wrapper">
+          <img src="/images/stella-avatar.png" alt="Profile Picture" class="profile-avatar" id="profileAvatar">
+          <label for="avatarUpload" class="avatar-upload-btn">
+            <i class="fas fa-camera"></i>
+            <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
+          </label>
+        </div>
+      </div>
+
+      <!-- Edit Form -->
+      <form id="editProfileForm">
+        <div class="mb-3">
+          <label for="name" class="form-label">Full Name</label>
+          <input type="text" class="form-control" id="name" value="John Doe" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" value="john@example.com" required>
+        </div>
+        <div class="mb-3">
+          <label for="bio" class="form-label">Bio</label>
+          <textarea class="form-control" id="bio" rows="3">AI enthusiast and Stella AI user</textarea>
+        </div>
+        
+        <!-- Buttons -->
+        <div class="d-flex justify-content-end gap-3">
+          <button type="button" class="btn btn-outline-secondary" onclick="window.location.href='/chat'">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script>
+    // Preview uploaded profile picture
+    document.getElementById('avatarUpload').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          document.getElementById('profileAvatar').src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Handle form submission (placeholder)
+    document.getElementById('editProfileForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Profile updated successfully!');
+      // In a real app, you would send data to the server here
+    });
+  </script>
+</body>
+</html>
